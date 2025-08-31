@@ -1,0 +1,37 @@
+extends layout
+
+block content
+  .container
+    h1.todo-heading To-Do List
+
+    form.todo-form(action="/add", method="POST")
+      .form-row
+        label(for="title") Title
+        input.input(type="text", id="title", name="title", placeholder="Task title", required)
+
+      .form-row
+        label(for="description") Description
+        textarea.input(id="description", name="description", rows="3", maxlength="500", placeholder="Optional description")
+
+      .form-row.form-inline
+        label.checkbox
+          input(type="checkbox", id="completed", name="completed")
+          |  Completed
+
+      .form-row
+        button.btn(type="submit") Add Task
+
+    if tasks && tasks.length
+      ul.task-list
+        each task in tasks
+          li.task(class=task.completed ? 'completed' : '')
+            .task-main
+              span.title #{task.title}
+              if task.description
+                p.desc #{task.description}
+            .task-actions
+              if !task.completed
+                a.action(href=`/complete/${task._id}`, title="Mark completed") ✓
+              a.action.delete(href=`/delete/${task._id}`, title="Delete") ✕
+    else
+      p.empty No tasks yet — add one!

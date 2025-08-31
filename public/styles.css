@@ -1,0 +1,81 @@
+
+:root{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #6366f1;
+  --danger: #ef4444;
+}
+
+*{box-sizing: border-box}
+
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background: linear-gradient(180deg,#eef2ff 0%, var(--bg) 100%);
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 16px;
+}
+
+.container{
+  width: 100%;
+  max-width: 760px;
+  background: var(--card);
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(16,24,40,0.08);
+}
+
+.todo-heading{
+  margin: 0 0 12px 0;
+  font-size: 28px;
+  color: #0f172a;
+}
+
+.todo-form{display: block; margin-bottom: 18px}
+
+.form-row{display:flex; flex-direction:column; align-items:flex-start; margin-bottom:12px}
+
+.form-inline{flex-direction:row; align-items:center}
+
+label{font-size:13px; color:var(--muted); margin-bottom:6px}
+
+.input{width:100%; padding:10px 12px; border-radius:8px; border:1px solid #e6e9ef; background:#fff; font-size:14px}
+
+.form-inline .checkbox{display:flex; align-items:center; gap:8px}
+
+.btn{background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:8px; font-weight:600; cursor:pointer}
+
+.btn:hover{filter:brightness(.95)}
+
+.task-list{list-style:none; padding:0; margin:18px 0 0 0}
+
+.task{display:flex; align-items:center; justify-content:space-between; padding:12px; border-radius:10px; border:1px solid #f0f2f7; margin-bottom:10px; background:linear-gradient(180deg, rgba(99,102,241,0.03), transparent)}
+
+.task.completed{opacity:.6; text-decoration:line-through}
+
+.task-main{display:flex; gap:12px; align-items:center}
+
+.title{font-weight:600; color:#0f172a}
+
+.due{font-size:13px; color:var(--muted); padding:4px 8px; border-radius:6px; background:#f8fafc; margin-left:6px}
+
+.task-actions{display:flex; gap:8px}
+
+.action{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:transparent; border:1px solid transparent; cursor:pointer; text-decoration:none; color:var(--muted)}
+
+.action:hover{background:#f3f4f6}
+
+.action.delete{color:var(--danger); border-color:rgba(239,68,68,0.08)}
+
+.empty{color:var(--muted); padding:18px 0}
+
+@media (max-width:520px){
+  .container{padding:18px}
+  .todo-heading{font-size:20px}
+  .form-row{margin-bottom:10px}
+}
+

@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  .container
+    h1.todo-heading Login 
+    form.todo-form(action="/user/login", method="POST")
+      .form-row
+        label(for="name") Full name
+        input.input(type="text", id="name", name="name", placeholder="Your full name", required)
+
+      .form-row
+        label(for="username") Username
+        input.input(type="text", id="username", name="username", placeholder="Choose a username", required)
+
+      .form-row
+        label(for="password") Password
+        input.input(type="password", id="password", name="password", placeholder="Create a password", required)
+
+
+      .form-row
+        button.btn(type="submit") Create account
