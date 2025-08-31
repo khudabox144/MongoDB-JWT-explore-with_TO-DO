@@ -12,6 +12,11 @@ const checkLogin = (req, res, next) => {
     }
 
     if (!token) {
+        // If browser expects HTML, redirect to signup page
+        const accept = req.headers.accept || '';
+        if (accept.includes('text/html')) {
+            return res.redirect('/signup');
+        }
         return res.status(401).json({ error: 'No token provided' });
     }
 
@@ -22,6 +27,10 @@ const checkLogin = (req, res, next) => {
         req.userId = decoded.id || decoded.userId;
         return next();
     } catch (err) {
+        const accept = req.headers.accept || '';
+        if (accept.includes('text/html')) {
+            return res.redirect('/signup');
+        }
         return res.status(401).json({ error: 'Authentication failed' });
     }
 };

@@ -2,9 +2,10 @@
 const express = require('express');
 const router=express.Router();
 const taskController=require('../controllers/taskController');
+const checkLogin = require('../middleware/loginCheck');
 
-router.get('/',taskController.GetTasks);
-router.post('/add',taskController.addTask);
+router.get('/', checkLogin, taskController.GetTasks);
+router.post('/add', checkLogin, taskController.addTask);
 router.get('/complete/:id',taskController.completedTask);
 router.get('/delete/:id',taskController.deleteTask);
 router.get('/completedTask',taskController.CompletedTask);
