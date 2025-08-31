@@ -10,7 +10,7 @@ router.get('/signup', (req, res) => {
 	res.render('signup');
 });
 
-router.post('/login',userControllers.login);
+router.post('/login', userControllers.login);
 router.get('/login', (req, res) => {
 	res.render('login');
 });

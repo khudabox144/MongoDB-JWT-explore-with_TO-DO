@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 const User = require('../models/UserSchema');
 const jwt=require('jsonwebtoken');
 const bcrypt = require("bcrypt");
+const checkLogin = require('../middleware/loginCheck');
+
+
 
 exports.signUp = async (req, res) => {
   try {
