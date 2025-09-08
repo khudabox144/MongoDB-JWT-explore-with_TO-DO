@@ -1,21 +1,10 @@
 extends layout
 
 block content
-  .container
-    h1.todo-heading Sign up
-    form.todo-form(action="/user/signup", method="POST")
-      .form-row
-        label(for="name") Full name
-        input.input(type="text", id="name", name="name", placeholder="Your full name", required)
-
-      .form-row
-        label(for="username") Username
-        input.input(type="text", id="username", name="username", placeholder="Choose a username", required)
-
-      .form-row
-        label(for="password") Password
-        input.input(type="password", id="password", name="password", placeholder="Create a password", required)
-
-
-      .form-row
-        button.btn(type="submit") Create account
+  .form-container
+    h2.page-heading login
+    form.todo-form(action="/user/login", method="POST")
+      input.input(type="text", name="username", placeholder="Username" required)
+      input.input(type="password", name="password", placeholder="Password" required)
+      button.btn.login(type="submit") Login
+      

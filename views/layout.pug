@@ -1,7 +1,26 @@
 doctype html
 html
   head
-    title To-Do List
+    title Todo App
     link(rel="stylesheet", href="/styles.css")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
   body
-    block content
+    .app-container
+      header.navbar
+        .container
+          h1.logo TodoApp
+          nav
+            if username
+              .user-section
+                span.welcome Welcome, #{username}!
+                a.btn.logout(href="/user/logout") Logout
+            else
+              .auth-section
+                a.btn.login-btn(href="/user/login") Sign up
+                a.btn.signup-btn(href="/user/signup")  Login
+
+      main.container
+        block content
+
+      footer
+        p &copy; 2025 TodoApp.

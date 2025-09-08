@@ -3,9 +3,18 @@ const router = require("../routes/taskRoutes");
 
 //Get all tasks
 exports.GetTasks = async (req, res) => {
-  const tasks = await Task.find();
-  res.render("index", { tasks });
+  try {
+    const tasks = await Task.find();
+    res.render("index", { 
+      tasks, 
+      username: req.username || null 
+    });
+  } catch (err) {
+    console.error("Error fetching tasks:", err.message);
+    res.status(500).send("Error fetching tasks");
+  }
 };
+
 
 //Completed task
 exports.CompletedTask = async (req, res) => {

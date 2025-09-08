@@ -11,6 +11,9 @@ router.get('/delete/:id',taskController.deleteTask);
 router.get('/completedTask',taskController.CompletedTask);
 router.get('/completedTaskwithCb', taskController.CompletedTaskwithCallback);
 router.get('/completed', taskController.CompleteTaskByStatics);
-
+router.get('/logout', (req, res) => {
+  res.clearCookie('token');  // remove JWT cookie
+  res.redirect('/');          // redirect to home page
+});
 
 module.exports=router;

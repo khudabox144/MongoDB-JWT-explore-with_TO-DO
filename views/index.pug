@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  .container
-    h1.todo-heading To-Do List
+  h2.page-heading Your Tasks
 
+  //- Add Task Form (only if logged in)
+  if username
     form.todo-form(action="/add", method="POST")
       .form-row
         label(for="title") Title
@@ -20,18 +21,26 @@ block content
 
       .form-row
         button.btn(type="submit") Add Task
+  else
+    p.info You must 
+      a(href="/user/login") Login 
+      | or 
+      a(href="/user/signup") Signup 
+      | to add tasks.
 
-    if tasks && tasks.length
-      ul.task-list
-        each task in tasks
-          li.task(class=task.completed ? 'completed' : '')
-            .task-main
-              span.title #{task.title}
-              if task.description
-                p.desc #{task.description}
-            .task-actions
+  //- Task List
+  if tasks && tasks.length
+    ul.task-list
+      each task in tasks
+        li.task(class=task.completed ? 'completed' : '')
+          .task-main
+            span.title #{task.title}
+            if task.description
+              p.desc #{task.description}
+          .task-actions
+            if username
               if !task.completed
                 a.action(href=`/complete/${task._id}`, title="Mark completed") ✓
               a.action.delete(href=`/delete/${task._id}`, title="Delete") ✕
-    else
-      p.empty No tasks yet — add one!
+  else
+    p.empty No tasks yet — add one!
