@@ -1,10 +1,14 @@
 const Task = require("../models/Task");
 const router = require("../routes/taskRoutes");
 
-//Get all tasks
+//Get User's tasks
 exports.GetTasks = async (req, res) => {
   try {
-    const tasks = await Task.find();
+    if (!req.userId) return res.redirect("/login");
+
+    // only fetch tasks of this logged-in user
+    const tasks = await Task.find({ user: req.userId });
+
     res.render("index", { 
       tasks, 
       username: req.username || null 
@@ -14,6 +18,7 @@ exports.GetTasks = async (req, res) => {
     res.status(500).send("Error fetching tasks");
   }
 };
+
 
 
 //Completed task
@@ -68,13 +73,25 @@ exports.CompleteTaskByStatics = exports.complete;
 
 //Add a task
 exports.addTask = async (req, res) => {
-  await Task.create({ title: req.body.title , description:req.body.description });
-  //   const todo = new Task(req.body);
-  //   todo.createdAt = new Date(); // extra logic before saving
-  //   await todo.save();
+  try {
+    const { title, description } = req.body;
 
-  res.redirect("/");
+    if (!req.userId) return res.status(401).send("Login required");
+
+    // save task with user reference
+    await Task.create({
+      title,
+      description,
+      user: req.userId 
+    });
+
+    res.redirect("/");
+  } catch (e) {
+    console.error("Error adding task:", e.message);
+    res.status(500).send("Error adding task");
+  }
 };
+
 
 // if i use callback function then i dont need to use async , await , after using callback
 //async and await are reduntdend
