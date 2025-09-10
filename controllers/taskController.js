@@ -36,17 +36,17 @@ exports.CompletedTask = async (req, res) => {
 
 
 //completedTask with callback function 
-exports.CompletedTaskwithCallback=(req,res)=>{
-    const todo=new Task();
-    todo.completedMethodCb((err,data)=>{
-        res.status(200).json({
-            data,
-        })
-    })
-}
+// exports.CompletedTaskwithCallback=(req,res)=>{
+//     const todo=new Task();
+//     todo.completedMethodCb((err,data)=>{
+//         res.status(200).json({
+//             data,
+//         })
+//     })
+// }
 
 // alias to match route name '/completedTaskwithCb'
-exports.CompletedTaskwithCb = exports.CompletedTaskwithCallback;
+// exports.CompletedTaskwithCb = exports.CompletedTaskwithCallback;
 
 
 
@@ -68,7 +68,7 @@ exports.CompleteTaskByStatics = exports.complete;
 
 //Add a task
 exports.addTask = async (req, res) => {
-  await Task.create({ title: req.body.title });
+  await Task.create({ title: req.body.title , description:req.body.description });
   //   const todo = new Task(req.body);
   //   todo.createdAt = new Date(); // extra logic before saving
   //   await todo.save();

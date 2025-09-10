@@ -10,6 +10,7 @@ const taskSchema = new mongoose.Schema({
   },
   completed: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
+  
 });
 
 //Assinging a function to the "methods" object of our todoSchema
