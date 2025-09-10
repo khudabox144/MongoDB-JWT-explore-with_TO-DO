@@ -21,15 +21,17 @@ exports.signUp = async (req, res) => {
   const newUser = new User(user);
   const saved = await newUser.save();
   console.log('User saved, id:', saved._id);
-    res.status(200).json({
-      message: "User created Successfully",
-      id: saved._id,
-    });
+    // res.status(200).json({
+    //   message: "User created Successfully",
+    //   id: saved._id,
+    // });
+    res.redirect('/user/login');
   } catch (err) {
     console.error('Error in signUp:', err);
     res.status(500).json({
       message: "Something went wrong while creating new User",
     });
+    res.redirect('/login')
   }
 };
 

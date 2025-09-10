@@ -2,11 +2,9 @@ extends layout
 
 block content
   .form-container
-    h2.page-heading signup
-    form.todo-form(action="/user/signup", method="POST")
-      input.input(type="text", name="name", placeholder="Full Name" required)
+    h2.page-heading login
+    form.todo-form(action="/user/login", method="POST")
       input.input(type="text", name="username", placeholder="Username" required)
       input.input(type="password", name="password", placeholder="Password" required)
-      button.btn.signup(type="submit") Create Account
-      p.switch
-        
+      button.btn.login(type="submit") Login
+      

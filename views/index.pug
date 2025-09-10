@@ -21,6 +21,10 @@ block content
 
       .form-row
         button.btn(type="submit") Add Task
+
+    //- Stats button (only show if logged in)
+    .form-row
+      a.btn.stats-btn(href="/stats") View Stats
   else
     p.info You must 
       a(href="/user/login") Login 
