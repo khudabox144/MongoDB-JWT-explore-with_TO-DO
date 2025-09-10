@@ -1,3 +1,6 @@
+// const Task = require('./models/Task'); // adjust path if needed
+
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -38,7 +41,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/',taskRoutes);
-app.use('/user',userRoutes);     
+app.use('/user',userRoutes);  
+
+
+
+// app.get('/test-agg', async (req, res) => {
+//   try {
+//     const tasks = await Task.aggregate([{ $group: { _id: '$completed', count: { $sum: 1 } } }]);
+//     res.json(tasks);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send(err.message);
+//   }
+// });
+
+
 
 // convenience redirect so /signup works as well
 app.get('/signup', (req, res) => res.redirect('/user/signup'));

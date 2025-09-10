@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  h1 Hello #{username}, here are your task stats
+  p Completed tasks: #{completed}
+  p Pending tasks: #{pending}
+
+  a(href='/') Back to tasks

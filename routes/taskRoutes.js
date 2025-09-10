@@ -15,5 +15,7 @@ router.get('/logout', (req, res) => {
   res.clearCookie('token');  // remove JWT cookie
   res.redirect('/');          // redirect to home page
 });
+router.get('/stats', checkLogin, taskController.getTaskStats);
+
 
 module.exports=router;
