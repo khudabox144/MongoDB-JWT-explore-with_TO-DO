@@ -60,7 +60,9 @@ app.use('/user',userRoutes);
 // convenience redirect so /signup works as well
 app.get('/signup', (req, res) => res.redirect('/user/signup'));
 
-app.listen(PORT,()=>{
-    console.log(`Server is running at //localhost:${PORT}`);
-})
+// app.listen(PORT,()=>{
+//     console.log(`Server is running at //localhost:${PORT}`);
+// })
+
+module.exports=app;
 
